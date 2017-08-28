@@ -1,5 +1,9 @@
 #!/usr/bin/with-contenv bash
 
+while [ ! -f /tmp/state/99-container-init ]
+do
+  sleep 1
+done
 
 if [ ! -f /tmp/state/10-redis ]; then
 
@@ -16,7 +20,7 @@ if [ ! -f /tmp/state/10-redis ]; then
 		exec su-exec redis "$0" "$@"
 	fi
 
-    mkdir -p /tmp/state
+        mkdir -p /tmp/state
 	echo 'Initialization Complete' >/tmp/state/10-redis
 fi
 

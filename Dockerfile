@@ -3,7 +3,9 @@ MAINTAINER Dave Conroy <dave at tiredofit dot ca>
 
 	ENV REDIS_VERSION=3.2.9 \
 	    REDIS_DOWNLOAD_URL=http://download.redis.io/releases/redis-3.2.9.tar.gz \
-	    REDIS_DOWNLOAD_SHA1=6eaacfa983b287e440d0839ead20c2231749d5d6b78bbe0e0ffa3a890c59ff26
+	    REDIS_DOWNLOAD_SHA1=6eaacfa983b287e440d0839ead20c2231749d5d6b78bbe0e0ffa3a890c59ff26 \
+	    ZABBIX_HOSTNAME=redis-app
+
 
 ## Redis Installation
 	# add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
@@ -45,22 +47,20 @@ MAINTAINER Dave Conroy <dave at tiredofit dot ca>
 		rm -r /usr/src/redis && \
 		
 		apk del .build-deps && \
-	    rm -rf /var/cache/apk/*
-
-### Zabbix Setup 
-	ENV ZABBIX_HOSTNAME=redis-app
-	ADD /install/zabbix  /etc/zabbix
+     	        rm -rf /var/cache/apk/* && \
 
 # Workspace and Volume Setup
-	RUN mkdir /data && chown redis:redis /data
-	VOLUME /data
-	WORKDIR /data
+	        mkdir /data \ 
+                chown redis:redis /data
+
+    VOLUME /data
+    WORKDIR /data
 
 ## Networking Configuration
-	EXPOSE 6379
+    EXPOSE 6379
 
-### S6 Setup
-    ADD install/s6 /etc/s6
+### Files Addition
+   ADD install /
 
 ### Entrypoint Configuration  
     ENTRYPOINT ["/init"]

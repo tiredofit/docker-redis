@@ -1,3 +1,7 @@
+## 2.1 2017-08-27 <dave at tiredofit dot ca>
+
+* File Organization
+
 ## 2.0 2017-07-18 <dave at tiredofit dot ca>
 
 * Rebase with s6.d 
