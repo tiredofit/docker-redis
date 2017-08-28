@@ -39,8 +39,7 @@ Requires a MysQL Database Container
 
 # Installation
 
-Automated builds of the image are available on 
-[Registry](https://hub.docker.com/tiredofit/redis) and is the recommended method of 
+Automated builds of the image are available on [Docker Hub](https://hub.docker.com/tiredofit/redis) and is the recommended method of 
 installation.
 
 
@@ -74,9 +73,7 @@ The Following Data Volumes are available.
 
 ### Environment Variables
 
-| Parameter | Description |
-|-----------|-------------|
-| `ZABBIX_HOSTNAME`    | Hostname to report to Zabbix |
+Along with the Environment Variables from the [Base image](https://hub.docker.com/r/tiredofit/alpine), below is the complete list of available options that can be used to customize your installation.
 
 ### Networking
 
