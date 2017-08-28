@@ -50,7 +50,7 @@ MAINTAINER Dave Conroy <dave at tiredofit dot ca>
      	        rm -rf /var/cache/apk/* && \
 
 # Workspace and Volume Setup
-	        mkdir /data \ 
+	        mkdir -p /data \ 
                 chown redis:redis /data
 
     VOLUME /data
