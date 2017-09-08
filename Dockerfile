@@ -1,5 +1,5 @@
 FROM tiredofit/alpine:3.5
-MAINTAINER Dave Conroy <dave at tiredofit dot ca>
+LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
 	ENV REDIS_VERSION=3.2.9 \
 	    REDIS_DOWNLOAD_URL=http://download.redis.io/releases/redis-3.2.9.tar.gz \
