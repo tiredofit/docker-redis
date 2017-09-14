@@ -1,3 +1,7 @@
+## 2.2 2017-09-14 <dave at tiredofit dot ca>
+
+* Updated to Redis 4.01
+
 ## 2.1 2017-08-27 <dave at tiredofit dot ca>
 
 * File Organization

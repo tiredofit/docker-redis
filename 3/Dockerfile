@@ -1,9 +1,9 @@
-FROM tiredofit/alpine:3.5
+FROM registry.selfdesign.org/docker/alpine:3.5
 LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
-	ENV REDIS_VERSION=3.2.9 \
-	    REDIS_DOWNLOAD_URL=http://download.redis.io/releases/redis-3.2.9.tar.gz \
-	    REDIS_DOWNLOAD_SHA1=6eaacfa983b287e440d0839ead20c2231749d5d6b78bbe0e0ffa3a890c59ff26 \
+	ENV REDIS_VERSION=3.2.10 \
+	    REDIS_DOWNLOAD_URL=http://download.redis.io/releases/redis-3.2.10.tar.gz \
+	    REDIS_DOWNLOAD_SHA1=411c604a716104f7f5a326abfad32de9cea10f15f987bec45cf86f315e9e63a0 \
 	    ZABBIX_HOSTNAME=redis-app
 
 
@@ -50,7 +50,7 @@ LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
      	        rm -rf /var/cache/apk/* && \
 
 # Workspace and Volume Setup
-	        mkdir -p /data \ 
+	        mkdir -p /data && \ 
                 chown redis:redis /data
 
     VOLUME /data

@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  redis-app:
+    container_name: redis-app
+    restart: always
+    image: registry.selfdesign.org/docker/redis:latest
+    environment: 
+      - ZABBIX_HOSTNAME=redis-app
+    networks:
+      - proxy-tier
+    volumes:
+    - ./redis:/var/lib/redis:Z
+
+networks:
+  proxy-tier:
+    external:
+      name: nginx-proxy
+
+
