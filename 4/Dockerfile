@@ -24,10 +24,8 @@ LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 			musl-dev \
 			tar \
 		&& \
-		wget -O redis.tar.gz "$REDIS_DOWNLOAD_URL" && \
 		mkdir -p /usr/src/redis && \
-		tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1 && \
-		rm redis.tar.gz && \
+		curl $REDIS_DOWNLOAD_URL | tar xfz - --strip 1 -C /usr/src/redis && \
 		
 	# Disable Redis protected mode [1] as it is unnecessary in context
 	# of Docker. Ports are not automatically exposed when running inside
