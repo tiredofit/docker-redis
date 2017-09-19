@@ -4,7 +4,8 @@ LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 	ENV REDIS_VERSION=3.2.10 \
 	    REDIS_DOWNLOAD_URL=http://download.redis.io/releases/redis-3.2.10.tar.gz \
 	    REDIS_DOWNLOAD_SHA1=411c604a716104f7f5a326abfad32de9cea10f15f987bec45cf86f315e9e63a0 \
-	    ZABBIX_HOSTNAME=redis-app
+	    ZABBIX_HOSTNAME=redis-app \
+            ENABLE_SMTP=FALSE
 
 
 ## Redis Installation

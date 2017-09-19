@@ -1,10 +1,11 @@
 FROM registry.selfdesign.org/docker/alpine:3.6
 LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
-	ENV REDIS_VERSION 4.0.1 \
+	ENV REDIS_VERSION=4.0.1 \
 	    REDIS_DOWNLOAD_URL=http://download.redis.io/releases/redis-4.0.1.tar.gz \
 	    REDIS_DOWNLOAD_SHA1=2049cd6ae9167f258705081a6ef23bb80b7eff9ff3d0d7481e89510f27457591 \
-	    ZABBIX_HOSTNAME=redis-app
+	    ZABBIX_HOSTNAME=redis-app \
+            ENABLE_SMTP=FALSE
 
 ## Redis Installation
 	# add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
