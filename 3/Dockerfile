@@ -1,9 +1,9 @@
-FROM tiredofit/alpine:3.5
+FROM tiredofit/alpine:3.7
 LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
-	ENV REDIS_VERSION=3.2.10 \
-	    REDIS_DOWNLOAD_URL=http://download.redis.io/releases/redis-3.2.10.tar.gz \
-	    REDIS_DOWNLOAD_SHA1=411c604a716104f7f5a326abfad32de9cea10f15f987bec45cf86f315e9e63a0 \
+	ENV REDIS_VERSION=3.2.11 \
+	    REDIS_DOWNLOAD_URL=http://download.redis.io/releases/redis-3.2.11.tar.gz \
+	    REDIS_DOWNLOAD_SHA1=31ae927cab09f90c9ca5954aab7aeecc3bb4da6087d3d12ba0a929ceb54081b5 \
 	    ZABBIX_HOSTNAME=redis-app \
             ENABLE_SMTP=FALSE
 

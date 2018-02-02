@@ -1,3 +1,12 @@
+## 2.4 2017-01-30 <dave at tiredofit dot ca>
+
+* Bump to Redis 4.07
+* Redo Zabbix Checks
+
+## 2.3 2017-12-01 <dave at tiredofit dot ca>
+
+* Bump Base to Alpine 3.7
+
 ## 2.2 2017-09-14 <dave at tiredofit dot ca>
 
 * Updated to Redis 4.01

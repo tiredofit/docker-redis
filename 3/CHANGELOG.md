@@ -1,3 +1,9 @@
+## 2.3 2018-01-31 <dave at tiredofit dot ca>
+
+* Fix Zabbix Checks
+* Bump to Redis 3.2.11
+* Alpine 3.7
+
 ## 2.2 2017-09-14 <dave at tiredofit dot ca>
 
 * Fix & Character
