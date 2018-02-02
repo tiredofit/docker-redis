@@ -4,7 +4,7 @@ services:
   redis-app:
     container_name: redis-app
     restart: always
-    image: registry.selfdesign.org/docker/redis:latest
+    image: tiredofit/redis:latest
     environment: 
       - ZABBIX_HOSTNAME=redis-app
     networks:
