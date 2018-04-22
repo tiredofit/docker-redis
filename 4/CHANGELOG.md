@@ -1,3 +1,6 @@
+## 2.5 2018-04-15 <dave at tiredofit dot ca>
+
+* Bump to Redis 4.09
 ## 2.4 2017-01-30 <dave at tiredofit dot ca>
 
 * Bump to Redis 4.07

@@ -1,54 +1,44 @@
 FROM tiredofit/alpine:3.7
 LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
-	ENV REDIS_VERSION=4.0.7 \
-	    REDIS_DOWNLOAD_URL=http://download.redis.io/releases/redis-4.0.7.tar.gz \
-	    REDIS_DOWNLOAD_SHA1=1bba546d44fb40e1fd8be1a15e1a9cc6484bceeea0bbd52919eebc656661ecd1 \
-	    ZABBIX_HOSTNAME=redis-app \ 
-            ENABLE_SMTP=FALSE
+	ENV REDIS_VERSION=4.0.9 \
+	    REDIS_DOWNLOAD_URL=http://download.redis.io/releases/redis-4.0.9.tar.gz \
+	    ZABBIX_HOSTNAME=redis-db \
+        ENABLE_SMTP=FALSE
 
 ## Redis Installation
-	# add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-	RUN addgroup -S redis && adduser -S -G redis redis
+	RUN set -x ; \
+	    addgroup -S -g 6379 redis ; \
+            adduser -S -D -H -h /dev/null -s /sbin/nologin -G redis -u 6379 redis ;\
 
-	# grab su-exec for easy step-down from root
-	RUN apk add --no-cache 'su-exec>=0.2'
-
-	# for redis-sentinel see: http://redis.io/topics/sentinel
-	RUN set -ex \
+	    apk add --no-cache 'su-exec>=0.2' ; \
+	    set -ex ; \
 		\
-		&& apk add --no-cache --virtual .build-deps \
+		apk add --no-cache --virtual .redis-build-deps \
 			gcc \
 			linux-headers \
 			make \
 			musl-dev \
 			tar \
-		&& \
-		mkdir -p /usr/src/redis && \
-		curl $REDIS_DOWNLOAD_URL | tar xfz - --strip 1 -C /usr/src/redis && \
+		    ; \
+		mkdir -p /usr/src/redis ; \
+		curl $REDIS_DOWNLOAD_URL | tar xfz - --strip 1 -C /usr/src/redis ; \
 		
-	# Disable Redis protected mode [1] as it is unnecessary in context
-	# of Docker. Ports are not automatically exposed when running inside
-	# Docker, but rather explicitely by specifying -p / -P.
-	# [1] https://github.com/antirez/redis/commit/edd4d555df57dc84265fdfb4ef59a4678832f6da
-		grep -q '^#define CONFIG_DEFAULT_PROTECTED_MODE 1$' /usr/src/redis/src/server.h && \
-		sed -ri 's!^(#define CONFIG_DEFAULT_PROTECTED_MODE) 1$!\1 0!' /usr/src/redis/src/server.h && \
-		grep -q '^#define CONFIG_DEFAULT_PROTECTED_MODE 0$' /usr/src/redis/src/server.h && \
-	# for future reference, we modify this directly in the source instead of just supplying a default configuration flag because apparently "if you specify any argument to redis-server, [it assumes] you are going to specify everything"
-	# see also https://github.com/docker-library/redis/issues/4#issuecomment-50780840
-	# (more exactly, this makes sure the default behavior of "save on SIGTERM" stays functional by default)
+		grep -q '^#define CONFIG_DEFAULT_PROTECTED_MODE 1$' /usr/src/redis/src/server.h ; \
+		sed -ri 's!^(#define CONFIG_DEFAULT_PROTECTED_MODE) 1$!\1 0!' /usr/src/redis/src/server.h ; \
+		grep -q '^#define CONFIG_DEFAULT_PROTECTED_MODE 0$' /usr/src/redis/src/server.h ; \
 		
-		make -C /usr/src/redis && \
-		make -C /usr/src/redis install && \
+		make -C /usr/src/redis ; \
+		make -C /usr/src/redis install ; \
 		
-		rm -r /usr/src/redis && \
+		rm -r /usr/src/redis ; \
 		
-		apk del .build-deps && \
-        rm -rf /var/cache/apk/* && \
+		apk del .redis-build-deps ; \
+        rm -rf /var/cache/apk/* ; \
 
 # Workspace and Volume Setup
-        mkdir -p /data && \
-        chown redis:redis /data
+        mkdir -p /data ; \
+        chown redis /data
 
     VOLUME /data
     WORKDIR /data
