@@ -4,9 +4,9 @@
 
 This will build a [Redis](https://www.redis.org) Database Container.
 
-This Container uses Alpine as a base. Also included are
+This Container uses Alpine:3.5 as a base. Also included are
 * [s6 overlay](https://github.com/just-containers/s6-overlay) enabled for PID 1 Init capabilities
-* [zabbix-agent](https://zabbix.org) for individual container monitoring.
+* [zabbix-agent](https://zabbix.org) based on TRUNK compiled for individual container monitoring.
 * Cron installed along with other tools (bash,curl, less, logrotate, nano, vim) for easier management.
 
 
@@ -34,7 +34,7 @@ This Container uses Alpine as a base. Also included are
 
 # Prerequisites
 
-No prerequisites
+Requires a MysQL Database Container
 
 
 # Installation
@@ -44,14 +44,8 @@ installation.
 
 
 ```bash
-docker pull hub.docker.com/tiredofit/redis:(tag)
+docker pull hub.docker.com/tiredofit/redis
 ```
-
-- Available Tags
-
-* `latest` - Alpine 3.6 - Redis 4
-* `4` - Alpine 3.6 - Redis 4
-* `3` - Alpine 3.5 - Redis 3
 
 # Quick Start
 
