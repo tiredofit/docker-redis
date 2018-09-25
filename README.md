@@ -1,15 +1,14 @@
-# hub.docker.com/tiredofit/redis
+# hub.docker.com/r/tiredofit/redis
+
+[![Build Status](https://img.shields.io/docker/build/tiredofit/redis.svg)](https://hub.docker.com/r/tiredofit/redis)
+[![Docker Pulls](https://img.shields.io/docker/pulls/tiredofit/redis.svg)](https://hub.docker.com/r/tiredofit/redis)
+[![Docker Stars](https://img.shields.io/docker/stars/tiredofit/redis.svg)](https://hub.docker.com/r/tiredofit/redis)
+[![Docker
+Layers](https://images.microbadger.com/badges/image/tiredofit/redis.svg)](https://microbadger.com/images/tiredofit/redis)
 
 # Introduction
 
 This will build a [Redis](https://www.redis.org) Database Container.
-
-This Container uses Alpine as a base. Also included are
-* [s6 overlay](https://github.com/just-containers/s6-overlay) enabled for PID 1 Init capabilities
-* [zabbix-agent](https://zabbix.org) for individual container monitoring.
-* Cron installed along with other tools (bash,curl, less, logrotate, nano, vim) for easier management.
-
-
 
 [Changelog](CHANGELOG.md)
 
