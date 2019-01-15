@@ -3,18 +3,20 @@ version: '2'
 services:
   redis-app:
     container_name: redis-app
-    restart: always
-    image: registry.selfdesign.org/docker/redis:latest
+    image: registry.selfdesign.org/docker/redis/4/:latest
+    volumes:
+      - ./data:/data/db
+      #- ./logs:/data/logs
     environment: 
       - ZABBIX_HOSTNAME=redis-app
+
+      - ENABLE_LOGS=FALSE
+      - REDIS_PASS=password
     networks:
       - proxy-tier
-    volumes:
-    - ./redis:/var/lib/redis:Z
+    restart: always
 
 networks:
   proxy-tier:
     external:
       name: nginx-proxy
-
-

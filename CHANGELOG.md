@@ -1,6 +1,20 @@
+## 2.7 2019-01-13 <dave at tiredofit dot ca>
+
+* Add ENABLE_LOGS env var
+* Add LOG_LEVEL env var
+* Add REDIS_PORT env var
+* Add REDIS_PASS env var
+* Code cleanup
+
+## 2.6 2018-09-09 <dave at tiredofit dot ca>
+
+* Change Alpine base to 3.8
+* Redis 4.0.11 
+
 ## 2.5 2018-04-15 <dave at tiredofit dot ca>
 
 * Bump to Redis 4.09
+
 ## 2.4 2017-01-30 <dave at tiredofit dot ca>
 
 * Bump to Redis 4.07
