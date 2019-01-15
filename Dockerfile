@@ -1,4 +1,4 @@
-FROM tiredofit/alpine:3.7
+FROM registry.selfdesign.org/docker/alpine/3.7:latest
 LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
 	ENV REDIS_VERSION=3.2.11 \
@@ -53,9 +53,6 @@ LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 # Workspace and Volume Setup
 	        mkdir -p /data && \ 
                 chown redis:redis /data
-
-    VOLUME /data
-    WORKDIR /data
 
 ## Networking Configuration
     EXPOSE 6379

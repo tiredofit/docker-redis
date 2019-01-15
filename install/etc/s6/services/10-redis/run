@@ -5,7 +5,32 @@ do
   sleep 1
 done
 
-if [ ! -f /tmp/state/10-redis ]; then
+### Set Debug Mode
+if [ "$DEBUG_MODE" = "TRUE" ] || [ "$DEBUG_MODE" = "true" ]; then
+    set -x
+fi
+
+REDIS_PASS=${REDIS_PASS:-}
+REDIS_PORT=${REDIS_PORT:-"6379"}
+LOG_LEVEL=${LOG_LEVEL:-"notice"}
+
+if [ "$ENABLE_LOGS" = "TRUE" ] || [ "$ENABLE_LOGS" = "true" ]; then
+    mkdir -p /data/logs
+    cat <<EOF > /etc/logrotate.d/redis.conf
+/data/logs/*.log {
+daily
+ifempty
+rotate 7
+missingok
+compress
+dateext
+copytruncate
+}
+EOF
+    chmod -R 755 /etc/logrotate.d/redis.conf
+    $logs=" --logfile /data/logs/redis.log"
+fi    
+
 
 ## Redis Setup
 	# first arg is `-f` or `--some-option`
@@ -20,11 +45,12 @@ if [ ! -f /tmp/state/10-redis ]; then
 		exec su-exec redis "$0" "$@"
 	fi
 
-        mkdir -p /tmp/state
-	echo 'Initialization Complete' >/tmp/state/10-redis
-fi
-
+mkdir -p /data/db/
+chown -R redis /data /etc/redis/
 echo ''
-echo '** Starting Redis..'
-exec s6-setuidgid redis redis-server --dir /data
-
+echo '** [redis] Starting Redis'
+exec s6-setuidgid redis redis-server --dir /data/db/ \
+                                     ${REDIS_PASS:+--requirepass $REDIS_PASS} \
+                                     --loglevel $LOG_LEVEL \
+                                     --port $REDIS_PORT \
+                                     $logs

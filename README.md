@@ -3,19 +3,17 @@
 [![Build Status](https://img.shields.io/docker/build/tiredofit/redis.svg)](https://hub.docker.com/r/tiredofit/redis)
 [![Docker Pulls](https://img.shields.io/docker/pulls/tiredofit/redis.svg)](https://hub.docker.com/r/tiredofit/redis)
 [![Docker Stars](https://img.shields.io/docker/stars/tiredofit/redis.svg)](https://hub.docker.com/r/tiredofit/redis)
-[![Docker
+[![Docker 
 Layers](https://images.microbadger.com/badges/image/tiredofit/redis.svg)](https://microbadger.com/images/tiredofit/redis)
 
 # Introduction
 
 This will build a [Redis](https://www.redis.org) Database Container.
 
-This Container uses Alpine:3.5 as a base. Also included are
+This Container uses Alpine as a base. Also included are
 * [s6 overlay](https://github.com/just-containers/s6-overlay) enabled for PID 1 Init capabilities
-* [zabbix-agent](https://zabbix.org) based on TRUNK compiled for individual container monitoring.
+* [zabbix-agent](https://zabbix.org) for individual container monitoring.
 * Cron installed along with other tools (bash,curl, less, logrotate, nano, vim) for easier management.
-
-
 
 [Changelog](CHANGELOG.md)
 
@@ -40,18 +38,25 @@ This Container uses Alpine:3.5 as a base. Also included are
 
 # Prerequisites
 
-Requires a MysQL Database Container
+No prerequisites
 
 
 # Installation
 
-Automated builds of the image are available on [Docker Hub](https://hub.docker.com/tiredofit/redis) and is the recommended method of 
+Automated builds of the image are available on [Docker Hub](https://hub.docker.com/r/tiredofit/redis) and is the recommended method of 
 installation.
 
 
 ```bash
-docker pull hub.docker.com/tiredofit/redis
+docker pull tiredofit/redis:(tag)
 ```
+
+- Available Tags
+
+* `latest` -  Redis 5
+* `5` -  Redis 5
+* `4` - Redis 4
+* `3` - Redis 3
 
 # Quick Start
 
@@ -64,8 +69,6 @@ image.
 * Map [persistent storage](#data-volumes) for access to configuration and data files for backup.
 * Make [networking ports](#networking) available for public access if necessary
 
-
-
 # Configuration
 
 ### Data-Volumes
@@ -74,12 +77,20 @@ The Following Data Volumes are available.
 
 | Parameter | Description |
 |-----------|-------------|
-| `/data`    | Application Directory |
-      
+| `/data/db`    | Application Directory |
+| `/data/logs`  | Logfiles |      
 
 ### Environment Variables
 
 Along with the Environment Variables from the [Base image](https://hub.docker.com/r/tiredofit/alpine), below is the complete list of available options that can be used to customize your installation.
+
+
+| Parameter | Description |
+|-----------|-------------|
+| `ENABLE_LOGS` | Enable Logfiles `TRUE` or `FALSE` - Default `FALSE` |
+| `LOG_LEVEL` | Log level  - Default `notice` |
+| `REDIS_PORT` | Listening Port  - Default `6379` |
+| `REDIS_PASS` | (optional) Require password to connect |
 
 ### Networking
 
