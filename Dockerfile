@@ -1,4 +1,4 @@
-FROM registry.selfdesign.org/docker/alpine/3.7:latest
+FROM tiredofit/alpine:3.7
 LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
 	ENV REDIS_VERSION=3.2.11 \
