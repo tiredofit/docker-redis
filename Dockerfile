@@ -1,8 +1,8 @@
 FROM registry.selfdesign.org/docker/alpine/3.8:latest
 LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
-ENV REDIS_VERSION=4.0.11 \
-    REDIS_DOWNLOAD_URL=http://download.redis.io/releases/redis-4.0.11.tar.gz \
+ENV REDIS_VERSION=5.0.3 \
+    REDIS_DOWNLOAD_URL=http://download.redis.io/releases/redis-5.0.3.tar.gz \
     ZABBIX_HOSTNAME=redis-db \
     ENABLE_SMTP=FALSE
 
@@ -47,7 +47,7 @@ RUN set -x && \
     rm -rf /var/cache/apk/* && \
     \
 # Workspace and Volume Setup
-    mkdir -p /data/db && \
+    mkdir -p /data && \
     chown redis /data
 
 ## Networking Configuration

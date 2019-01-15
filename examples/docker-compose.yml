@@ -3,7 +3,7 @@ version: '2'
 services:
   redis-app:
     container_name: redis-app
-    image: registry.selfdesign.org/docker/redis/4/:latest
+    image: registry.selfdesign.org/docker/redis/5:latest
     volumes:
       - ./data:/data/db
       #- ./logs:/data/logs

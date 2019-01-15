@@ -46,7 +46,7 @@ fi
 	fi
 
 mkdir -p /data/db/
-chown -R redis /data /etc/redis/
+chown -R redis /data
 echo ''
 echo '** [redis] Starting Redis'
 exec s6-setuidgid redis redis-server --dir /data/db/ \

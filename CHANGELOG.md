@@ -1,10 +1,18 @@
-## 2.7 2019-01-13 <dave at tiredofit dot ca>
+## 2.8 2019-01-13 <dave at tiredofit dot ca>
 
 * Add ENABLE_LOGS env var
 * Add LOG_LEVEL env var
 * Add REDIS_PORT env var
 * Add REDIS_PASS env var
 * Code cleanup
+
+## 2.7.1 2019-01-13 <dave at tiredofit dot ca>
+
+* Redis 5.0.3
+
+## 2.7 2018-12-10 <dave at tiredofit dot ca>
+
+* Redis 5.0.2
 
 ## 2.6 2018-09-09 <dave at tiredofit dot ca>
 
