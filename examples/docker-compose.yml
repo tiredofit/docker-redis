@@ -1,22 +1,27 @@
-version: '2'
-
+version: '3.7'
 services:
+  
   redis-app:
-    container_name: redis-app
     image: registry.selfdesign.org/docker/redis/5:latest
+    container_name: redis-app
     volumes:
-      - ./data:/data/db
-      #- ./logs:/data/logs
+    - ./data:/data/db
+    #- ./logs:/data/logs
     environment: 
-      - ZABBIX_HOSTNAME=redis-app
+    - ZABBIX_HOSTNAME=redis-app
 
-      - ENABLE_LOGS=FALSE
-      - REDIS_PASS=password
+    - ENABLE_LOGS=FALSE
+    - REDIS_PASS=password
     networks:
-      - proxy-tier
+    - internal
+    - services
     restart: always
 
 networks:
-  proxy-tier:
-    external:
-      name: nginx-proxy
+  proxy:
+    external: true
+  internal:
+    external: false
+  services:
+    external: true
+

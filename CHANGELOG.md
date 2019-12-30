@@ -1,3 +1,35 @@
+## 2.11.0 2019-12-29 <dave at tiredofit dot ca>
+
+   ### Added
+      - Update to support new tiredofit/alpine base image
+
+
+## 2.10.2 2019-12-20 <dave at tiredofit dot ca>
+
+   ### Added
+      - Alpine 3.11 base
+
+
+## 2.10.1 2019-07-25 <dave at tiredofit dot ca>
+
+* Cleanup Dockerfile
+
+## 2.10 2019-06-19 <dave at tiredofit dot ca>
+
+* Alpine 3.10
+
+## 2.9.1 2019-06-19 <dave at tiredofit dot ca>
+
+* Redis 5.0.5
+
+## 2.9 2019-03-12 <dave at tiredofit dot ca>
+
+* ADD ENABLE_PERSISTANCE env var
+
+## 2.8.1 2019-02-08 <dave at tiredofit dot ca>
+
+* Alpine 3.9
+
 ## 2.8 2019-01-13 <dave at tiredofit dot ca>
 
 * Add ENABLE_LOGS env var

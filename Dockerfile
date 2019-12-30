@@ -1,8 +1,7 @@
-FROM tiredofit/alpine:3.8
+FROM tiredofit/alpine:3.11
 LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
-ENV REDIS_VERSION=5.0.3 \
-    REDIS_DOWNLOAD_URL=http://download.redis.io/releases/redis-5.0.3.tar.gz \
+ENV REDIS_VERSION=5.0.5 \
     ZABBIX_HOSTNAME=redis-db \
     ENABLE_SMTP=FALSE
 
@@ -15,9 +14,8 @@ RUN set -x && \
     set -ex && \
 	\
 	apk add --no-cache --virtual .redis-build-deps \
-        coreutils \
+                coreutils \
 		gcc \
-        jemalloc-dev \
 		linux-headers \
 		make \
 		musl-dev \
@@ -25,7 +23,7 @@ RUN set -x && \
 	    && \
 	\
 	mkdir -p /usr/src/redis && \
-	curl $REDIS_DOWNLOAD_URL | tar xfz - --strip 1 -C /usr/src/redis && \
+	curl http://download.redis.io/releases/redis-${REDIS_VERSION}.tar.gz | tar xfz - --strip 1 -C /usr/src/redis && \
 	\
 	grep -q '^#define CONFIG_DEFAULT_PROTECTED_MODE 1$' /usr/src/redis/src/server.h && \
 	sed -ri 's!^(#define CONFIG_DEFAULT_PROTECTED_MODE) 1$!\1 0!' /usr/src/redis/src/server.h && \
