@@ -2,7 +2,7 @@ version: '3.7'
 services:
   
   redis-app:
-    image: tiredofit/redis:5-latest
+    image: tiredofit/redis:5
     container_name: redis-app
     volumes:
     - ./data:/data/db
@@ -13,12 +13,15 @@ services:
     - ENABLE_LOGS=FALSE
     - REDIS_PASS=password
     networks:
+    - internal
     - services
     restart: always
 
 networks:
   proxy:
     external: true
+  internal:
+    external: false
   services:
     external: true
 

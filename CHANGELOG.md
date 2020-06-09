@@ -1,3 +1,27 @@
+## 2.12.0 2020-06-09 <dave at tiredofit dot ca>
+
+   ### Added
+      - Update to support tiredofit/alpine 5.0.0 base image
+
+
+## 2.11.3 2020-04-28 <dave at tiredofit dot ca>
+
+   ### Added
+      - Redis 5.0.8
+
+
+## 2.11.2 2020-02-13 <dave at tiredofit dot ca>
+
+   ### Added
+      - Redis 5.0.7
+
+
+## 2.11.1 2020-01-02 <dave at tiredofit dot ca>
+
+   ### Changed
+      - Additional Changes to support new tiredofit/alpine base image
+
+
 ## 2.11.0 2019-12-29 <dave at tiredofit dot ca>
 
    ### Added

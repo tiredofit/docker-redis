@@ -1,13 +1,10 @@
 #!/usr/bin/with-contenv bash
 
-source /assets/functions/*
+source /assets/functions/00-container
 PROCESS_NAME="redis"
 
-while [ ! -f /tmp/state/99-container-init ]
-do
-  sleep 1
-done
-
+check_container_initialized
+liftoff
 
 REDIS_PASS=${REDIS_PASS:-}
 REDIS_PORT=${REDIS_PORT:-"6379"}
