@@ -1,3 +1,11 @@
+## 2.13.0 2020-06-15 <dave at tiredofit dot ca>
+
+   ### Added
+      - Update to support tiredofit/alpine base images
+      - Redis 6.0.5
+      - TLS Enabled
+
+
 ## 2.12.1 2020-06-12 <dave at tiredofit dot ca>
 
    ### Added

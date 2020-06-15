@@ -1,7 +1,7 @@
 FROM tiredofit/alpine:3.12
 LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
-ENV REDIS_VERSION=5.0.8 \
+ENV REDIS_VERSION=6.0.5 \
     ZABBIX_HOSTNAME=redis-db \
     ENABLE_SMTP=FALSE
 
@@ -13,24 +13,38 @@ RUN set -x && \
     apk add --no-cache 'su-exec>=0.2' && \
     set -ex && \
 	\
-	apk add --no-cache --virtual .redis-build-deps \
+	apk update && \
+	apk update && \
+	apk add -t .redis-build-deps \
                 coreutils \
-		gcc \
-		linux-headers \
-		make \
-		musl-dev \
-		tar \
-	    && \
+				gcc \
+				linux-headers \
+				make \
+				musl-dev \
+				openssl-dev \
+				tar \
+			    && \
 	\
 	mkdir -p /usr/src/redis && \
 	curl http://download.redis.io/releases/redis-${REDIS_VERSION}.tar.gz | tar xfz - --strip 1 -C /usr/src/redis && \
 	\
-	grep -q '^#define CONFIG_DEFAULT_PROTECTED_MODE 1$' /usr/src/redis/src/server.h && \
-	sed -ri 's!^(#define CONFIG_DEFAULT_PROTECTED_MODE) 1$!\1 0!' /usr/src/redis/src/server.h && \
-	grep -q '^#define CONFIG_DEFAULT_PROTECTED_MODE 0$' /usr/src/redis/src/server.h && \
+	grep -E '^ *createBoolConfig[(]"protected-mode",.*, *1 *,.*[)],$' /usr/src/redis/src/config.c && \
+	sed -ri 's!^( *createBoolConfig[(]"protected-mode",.*, *)1( *,.*[)],)$!\10\2!' /usr/src/redis/src/config.c && \
+	grep -E '^ *createBoolConfig[(]"protected-mode",.*, *0 *,.*[)],$' /usr/src/redis/src/config.c && \
 	\
-	make -C /usr/src/redis -j "$(nproc)" && \
+	export BUILD_TLS=yes && \
+	make -C /usr/src/redis -j "$(nproc)" all && \
 	make -C /usr/src/redis install && \
+	\
+        serverMd5="$(md5sum /usr/local/bin/redis-server | cut -d' ' -f1)"; export serverMd5 && \
+	find /usr/local/bin/redis* -maxdepth 0 \
+		-type f -not -name redis-server \
+		-exec sh -eux -c ' \
+			md5="$(md5sum "$1" | cut -d" " -f1)"; \
+			test "$md5" = "$serverMd5"; \
+		' -- '{}' ';' \
+		-exec ln -svfT 'redis-server' '{}' ';' \
+	        && \
 	\
 	rm -r /usr/src/redis && \
 	\

@@ -1,35 +1,20 @@
 #!/usr/bin/with-contenv bash
 
 source /assets/functions/00-container
+prepare_service defaults 10-redis
 PROCESS_NAME="redis"
 
 check_container_initialized
+check_service_initialized init
+
 liftoff
 
-REDIS_PASS=${REDIS_PASS:-}
-REDIS_PORT=${REDIS_PORT:-"6379"}
-LOG_LEVEL=${LOG_LEVEL:-"notice"}
-ENABLE_PERSISTENCE=${ENABLE_PERSISTENCE:-"TRUE"}
-
-if [ "$ENABLE_LOGS" = "TRUE" ] || [ "$ENABLE_LOGS" = "true" ]; then
-    mkdir -p /data/logs
-    cat <<EOF > /etc/logrotate.d/redis.conf
-/data/logs/*.log {
-daily
-ifempty
-rotate 7
-missingok
-compress
-dateext
-copytruncate
-}
-EOF
-    chmod -R 755 /etc/logrotate.d/redis.conf
-    $logs=" --logfile /data/logs/redis.log"
+if var_true $ENABLE_LOGS ; then
+    redis_logs=" --logfile /data/logs/redis.log"
 fi    
 
-if [ "$ENABLE_PERSISTENCE" = "TRUE" ] || [ "$ENABLE_PERSISTENCE" = "true" ]; then
-   PERSISTENCE="--appendonly yes"
+if var true $ENABLE_PERSISTENCE ; then 
+   redis_persistence="--appendonly yes"
 fi
 
 ## Redis Setup
@@ -45,13 +30,10 @@ fi
 		exec su-exec redis "$0" "$@"
 	fi
 
-mkdir -p /data/db/
-chown -R redis /data
-
 print_info "Starting Redis ${REDIS_VERSION}"
 exec s6-setuidgid redis redis-server --dir /data/db/ \
                                      ${REDIS_PASS:+--requirepass $REDIS_PASS} \
                                      --loglevel $LOG_LEVEL \
                                      --port $REDIS_PORT \
-				     				$PERSISTENCE \
-                                     $logs
+				     				${redis_persistence} ${redis_logs}
+                                     
