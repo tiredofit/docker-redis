@@ -1,3 +1,9 @@
+## 2.13.1 2020-06-15 <dave at tiredofit dot ca>
+
+   ### Changed
+      - Fix for Data persistence
+
+
 ## 2.13.0 2020-06-15 <dave at tiredofit dot ca>
 
    ### Added
