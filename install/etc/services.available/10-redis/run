@@ -11,9 +11,9 @@ liftoff
 
 if var_true $ENABLE_LOGS ; then
     redis_logs=" --logfile /data/logs/redis.log"
-fi    
+fi
 
-if var_true $ENABLE_PERSISTENCE ; then 
+if var_true $ENABLE_PERSISTENCE ; then
    redis_persistence="--appendonly yes"
 fi
 
@@ -36,4 +36,3 @@ exec s6-setuidgid redis redis-server --dir /data/db/ \
                                      --loglevel $LOG_LEVEL \
                                      --port $REDIS_PORT \
 				     				${redis_persistence} ${redis_logs}
-                                     

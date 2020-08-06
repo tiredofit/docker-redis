@@ -1,10 +1,10 @@
 #!/usr/bin/with-contenv bash
 
 source /assets/functions/00-container
-prepare_service 
+prepare_service
 process_name="redis"
 
-if [ "$ENABLE_LOGS" = "TRUE" ] || [ "$ENABLE_LOGS" = "true" ]; then
+if var_true $ENABLE_LOGS ; then
     mkdir -p /data/logs
     cat <<EOF > /etc/logrotate.d/redis.conf
 /data/logs/*.log {
