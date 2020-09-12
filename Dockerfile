@@ -1,7 +1,7 @@
 FROM tiredofit/alpine:3.12
 LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
-ENV REDIS_VERSION=6.0.6 \
+ENV REDIS_VERSION=6.0.8 \
     ZABBIX_HOSTNAME=redis-db \
     ENABLE_SMTP=FALSE
 
