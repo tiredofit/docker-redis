@@ -1,7 +1,7 @@
-FROM tiredofit/alpine:3.12
+FROM tiredofit/alpine:3.13
 LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
-ENV REDIS_VERSION=6.0.9 \
+ENV REDIS_VERSION=6.2.1 \
     ZABBIX_HOSTNAME=redis-db \
     ENABLE_SMTP=FALSE
 
@@ -16,7 +16,7 @@ RUN set -x && \
 	apk update && \
 	apk update && \
 	apk add -t .redis-build-deps \
-                coreutils \
+                                coreutils \
 				gcc \
 				linux-headers \
 				make \
