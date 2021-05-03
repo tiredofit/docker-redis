@@ -1,10 +1,10 @@
 # github.com/tiredofit/docker-redis
 
 
-[![GitHub release](https://img.shields.io/github/v/tag/tiredofit/docker-spamassassin?style=flat-square)](https://github.com/tiredofit/docker-spamassassin/releases/latest)
-[![Build Status](https://img.shields.io/github/workflow/status/tiredofit/docker-spamassassin/build?style=flat-square)](https://github.com/tiredofit/docker-spamassassin/actions?query=workflow%3Abuild)
-[![Docker Stars](https://img.shields.io/docker/stars/tiredofit/spamassassin.svg?style=flat-square&logo=docker)](https://hub.docker.com/r/tiredofit/spamassassin/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/tiredofit/spamassassin.svg?style=flat-square&logo=docker)](https://hub.docker.com/r/tiredofit/spamassassin/)
+[![GitHub release](https://img.shields.io/github/v/tag/tiredofit/docker-redis?style=flat-square)](https://github.com/tiredofit/docker-redis/releases/latest)
+[![Build Status](https://img.shields.io/github/workflow/status/tiredofit/docker-redis/build?style=flat-square)](https://github.com/tiredofit/docker-redis/actions?query=workflow%3Abuild)
+[![Docker Stars](https://img.shields.io/docker/stars/tiredofit/redis.svg?style=flat-square&logo=docker)](https://hub.docker.com/r/tiredofit/redis/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/tiredofit/redis.svg?style=flat-square&logo=docker)](https://hub.docker.com/r/tiredofit/redis/)
 [![Become a sponsor](https://img.shields.io/badge/sponsor-tiredofit-181717.svg?logo=github&style=flat-square)](https://github.com/sponsors/tiredofit)
 [![Paypal Donate](https://img.shields.io/badge/donate-paypal-00457c.svg?logo=paypal&style=flat-square)](https://www.paypal.me/tiredofit)
 
@@ -47,10 +47,10 @@ No prerequisites
 Clone this repository and build the image with `docker build -t (imagename) .`
 
 ### Prebuilt Images
-Builds of the image are available on [Docker Hub](https://hub.docker.com/r/tiredofit/spamassassin) and is the recommended method of installation.
+Builds of the image are available on [Docker Hub](https://hub.docker.com/r/tiredofit/redis) and is the recommended method of installation.
 
 ```bash
-docker pull tiredofit/spamassassin:(imagetag)
+docker pull tiredofit/redis:(imagetag)
 ```
 The following image tags are available along with their taged release based on what's written in the [Changelog](CHANGELOG.md):
 
