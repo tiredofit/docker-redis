@@ -1,22 +1,19 @@
 FROM tiredofit/alpine:3.13
 LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
-ENV REDIS_VERSION=6.2.2 \
+ENV REDIS_VERSION=6.2.3 \
     ZABBIX_HOSTNAME=redis-db \
     ENABLE_SMTP=FALSE
 
 ## Redis Installation
-RUN set -x && \
+RUN set -ex && \
     addgroup -S -g 6379 redis && \
     adduser -S -D -H -h /dev/null -s /sbin/nologin -G redis -u 6379 redis && \
-    \
     apk add --no-cache 'su-exec>=0.2' && \
-    set -ex && \
-	\
 	apk update && \
-	apk update && \
+	apk upgrade && \
 	apk add -t .redis-build-deps \
-                                coreutils \
+				coreutils \
 				gcc \
 				linux-headers \
 				make \
@@ -36,7 +33,7 @@ RUN set -x && \
 	make -C /usr/src/redis -j "$(nproc)" all && \
 	make -C /usr/src/redis install && \
 	\
-        serverMd5="$(md5sum /usr/local/bin/redis-server | cut -d' ' -f1)"; export serverMd5 && \
+	serverMd5="$(md5sum /usr/local/bin/redis-server | cut -d' ' -f1)"; export serverMd5 && \
 	find /usr/local/bin/redis* -maxdepth 0 \
 		-type f -not -name redis-server \
 		-exec sh -eux -c ' \
@@ -44,9 +41,7 @@ RUN set -x && \
 			test "$md5" = "$serverMd5"; \
 		' -- '{}' ';' \
 		-exec ln -svfT 'redis-server' '{}' ';' \
-	        && \
-	\
-	rm -r /usr/src/redis && \
+		&& \
 	\
     runDeps="$( \
 	scanelf --needed --nobanner --format '%n#p' --recursive /usr/local \
@@ -54,8 +49,9 @@ RUN set -x && \
 		| sort -u \
 		| awk 'system("[ -e /usr/local/lib/" $1 " ]") == 0 { next } { print "so:" $1 }' \
     )" && \
-    apk add --virtual .redis-rundeps $runDeps && \
+    apk add -t .redis-rundeps $runDeps && \
 	apk del .redis-build-deps && \
+	rm -r /usr/src/redis && \
     rm -rf /var/cache/apk/* && \
     \
 # Workspace and Volume Setup
