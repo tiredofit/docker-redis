@@ -1,7 +1,7 @@
-FROM tiredofit/alpine:3.13
+FROM tiredofit/alpine:3.14
 LABEL maintainer="Dave Conroy (github.com/tiredofit)"
 
-ENV REDIS_VERSION=6.2.4 \
+ENV REDIS_VERSION=6.2.5 \
     ZABBIX_HOSTNAME=redis-db \
     CONTAINER_ENABLE_MESSAGING=FALSE
 
@@ -23,7 +23,7 @@ RUN set -ex && \
 			    && \
 	\
 	mkdir -p /usr/src/redis && \
-	curl http://download.redis.io/releases/redis-${REDIS_VERSION}.tar.gz | tar xfz - --strip 1 -C /usr/src/redis && \
+	curl -sSL https://github.com/redis/redis/archive/refs/tags/${REDIS_VERSION}.tar.gz | tar xfz - --strip 1 -C /usr/src/redis && \
 	\
 	grep -E '^ *createBoolConfig[(]"protected-mode",.*, *1 *,.*[)],$' /usr/src/redis/src/config.c && \
 	sed -ri 's!^( *createBoolConfig[(]"protected-mode",.*, *)1( *,.*[)],)$!\10\2!' /usr/src/redis/src/config.c && \
