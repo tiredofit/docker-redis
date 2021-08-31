@@ -1,3 +1,9 @@
+## 2.14.0 2021-08-31 <dave at tiredofit dot ca>
+
+   ### Added
+      - Add customizable data and log directories
+
+
 ## 2.13.9 2021-07-21 <dave at tiredofit dot ca>
 
    ### Added

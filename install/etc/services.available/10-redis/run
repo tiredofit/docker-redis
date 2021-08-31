@@ -10,7 +10,7 @@ check_service_initialized init
 liftoff
 
 if var_true ${ENABLE_LOGS} ; then
-    redis_logs=" --logfile /data/logs/redis.log"
+    redis_logs=" --logfile ${LOG_PATH}/${LOG_FILE}"
 fi
 
 if var_true ${ENABLE_PERSISTENCE} ; then
@@ -31,7 +31,7 @@ fi
 	fi
 
 print_start "Starting Redis ${REDIS_VERSION}"
-exec s6-setuidgid redis redis-server --dir /data/db/ \
+exec s6-setuidgid redis redis-server --dir ${DATA_PATH} \
                                      ${REDIS_PASS:+--requirepass $REDIS_PASS} \
                                      --loglevel $LOG_LEVEL \
                                      --port $REDIS_PORT \
