@@ -9,11 +9,11 @@ check_service_initialized init
 
 liftoff
 
-if var_true $ENABLE_LOGS ; then
+if var_true ${ENABLE_LOGS} ; then
     redis_logs=" --logfile /data/logs/redis.log"
 fi
 
-if var_true $ENABLE_PERSISTENCE ; then
+if var_true ${ENABLE_PERSISTENCE} ; then
    redis_persistence="--appendonly yes"
 fi
 

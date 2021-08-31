@@ -4,9 +4,9 @@ source /assets/functions/00-container
 prepare_service
 process_name="redis"
 
-if var_true $ENABLE_LOGS ; then
+if var_true ${ENABLE_LOGS} ; then
     mkdir -p /data/logs
-    cat <<EOF > /etc/logrotate.d/redis.conf
+    cat <<EOF > /etc/logrotate.d/redis
 /data/logs/*.log {
 daily
 ifempty
@@ -17,7 +17,7 @@ dateext
 copytruncate
 }
 EOF
-    chmod -R 755 /etc/logrotate.d/redis.conf
+    chmod -R 755 /etc/logrotate.d/redis
 fi
 
 mkdir -p /data/db/

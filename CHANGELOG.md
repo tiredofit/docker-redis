@@ -1,3 +1,10 @@
+## 2.13.9 2021-07-21 <dave at tiredofit dot ca>
+
+   ### Added
+      - Redis 6.2.5
+      - Alpine 3.14 base
+
+
 ## 2.13.8 2021-06-01 <dave at tiredofit dot ca>
 
    ### Added
