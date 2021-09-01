@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bash
 
-DATA_PATH=${DATA_PATH:-:"/data/db/"}
+DATA_PATH=${DATA_PATH:-"/data/db/"}
 ENABLE_PERSISTENCE=${ENABLE_PERSISTENCE:-"TRUE"}
 LOG_FILE=${LOG_FILE:-"redis.log"}
 LOG_LEVEL=${LOG_LEVEL:-"notice"}

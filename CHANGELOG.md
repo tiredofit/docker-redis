@@ -1,3 +1,9 @@
+## 2.14.1 2021-09-01 <dave at tiredofit dot ca>
+
+   ### Changed
+      - Fix bad defaults file with Data directory
+
+
 ## 2.14.0 2021-08-31 <dave at tiredofit dot ca>
 
    ### Added
