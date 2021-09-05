@@ -33,6 +33,6 @@ fi
 print_start "Starting Redis ${REDIS_VERSION}"
 exec s6-setuidgid redis redis-server --dir ${DATA_PATH} \
                                      ${REDIS_PASS:+--requirepass $REDIS_PASS} \
-                                     --loglevel $LOG_LEVEL \
-                                     --port $REDIS_PORT \
+                                     --loglevel ${LOG_LEVEL} \
+                                     --port ${REDIS_PORT} \
 				     				${redis_persistence} ${redis_logs}

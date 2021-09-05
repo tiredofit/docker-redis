@@ -1,3 +1,9 @@
+## 2.14.3 2021-09-04 <dave at tiredofit dot ca>
+
+   ### Changed
+      - Cleanup Run script
+
+
 ## 2.14.2 2021-09-04 <dave at tiredofit dot ca>
 
    ### Changed
