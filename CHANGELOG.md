@@ -1,3 +1,9 @@
+## 2.14.4 2021-09-05 <dave at tiredofit dot ca>
+
+   ### Changed
+      - Logfile permissions fix
+
+
 ## 2.14.3 2021-09-04 <dave at tiredofit dot ca>
 
    ### Changed
