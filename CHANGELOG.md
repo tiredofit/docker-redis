@@ -1,3 +1,9 @@
+## 2.14.2 2021-09-04 <dave at tiredofit dot ca>
+
+   ### Changed
+      - Change the way logrotation is configured to support log parsing
+
+
 ## 2.14.1 2021-09-01 <dave at tiredofit dot ca>
 
    ### Changed

@@ -7,25 +7,10 @@ process_name="redis"
 if var_true ${ENABLE_LOGS} ; then
     mkdir -p ${LOG_PATH}
     touch ${LOG_PATH}/${LOG_FILE}
-    if var_true "${CONTAINER_ENABLE_LOGROTATE}" ; then
-        cat <<EOF > /etc/logrotate.d/redis
-# logship: redis
-${LOG_PATH}/*.log {
-daily
-ifempty
-rotate 7
-missingok
-compress
-dateext
-copytruncate
-}
-EOF
-        chmod -R 755 /etc/logrotate.d/redis
+    create_logrotate redis ${LOG_PATH}/${LOG_FILE} none redis redis
 fi
-        chown -R redis ${LOG_PATH}
-    fi
 
 mkdir -p ${DATA_PATH}
-chown -R redis ${DATA_PATH}
+chown -R redis:redis ${DATA_PATH}
 
 liftoff
