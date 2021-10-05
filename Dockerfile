@@ -1,8 +1,7 @@
-FROM tiredofit/alpine:3.14
+FROM docker.io/tiredofit/alpine:3.14
 LABEL maintainer="Dave Conroy (github.com/tiredofit)"
 
-ENV REDIS_VERSION=6.2.5 \
-    CONTAINER_NAME=redis-db \
+ENV REDIS_VERSION=6.2.6 \
     CONTAINER_ENABLE_MESSAGING=FALSE
 
 ## Redis Installation
