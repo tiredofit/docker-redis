@@ -1,3 +1,9 @@
+## 2.14.6 2021-10-25 <dave at tiredofit dot ca>
+
+   ### Changed
+      - Fix Fluent-bit regular expressions for log shipping
+
+
 ## 2.14.5 2021-10-04 <dave at tiredofit dot ca>
 
    ### Added
