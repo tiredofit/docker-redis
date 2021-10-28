@@ -1,3 +1,9 @@
+## 2.14.7 2021-10-27 <dave at tiredofit dot ca>
+
+   ### Changed
+      - Remove option to turn off logs"
+
+
 ## 2.14.6 2021-10-25 <dave at tiredofit dot ca>
 
    ### Changed

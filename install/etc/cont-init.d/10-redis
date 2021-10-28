@@ -4,12 +4,11 @@ source /assets/functions/00-container
 prepare_service
 process_name="redis"
 
-if var_true ${ENABLE_LOGS} ; then
-    mkdir -p ${LOG_PATH}
-    touch ${LOG_PATH}/${LOG_FILE}
-    chown -R redis:redis ${LOG_PATH}/${LOG_FILE}
-    create_logrotate redis ${LOG_PATH}/${LOG_FILE} redis redis redis
-fi
+mkdir -p ${LOG_PATH}
+touch ${LOG_PATH}/${LOG_FILE}
+chown -R redis:redis ${LOG_PATH}/${LOG_FILE}
+create_logrotate redis ${LOG_PATH}/${LOG_FILE} redis redis redis
+
 
 mkdir -p ${DATA_PATH}
 chown -R redis:redis ${DATA_PATH}
