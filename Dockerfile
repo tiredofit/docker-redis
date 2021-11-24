@@ -1,4 +1,4 @@
-FROM docker.io/tiredofit/alpine:3.14
+FROM docker.io/tiredofit/alpine:3.15
 LABEL maintainer="Dave Conroy (github.com/tiredofit)"
 
 ENV REDIS_VERSION=6.2.6 \
