@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bash
+#!/command/with-contenv bash
 
 source /assets/functions/00-container
 prepare_service
@@ -9,14 +9,7 @@ touch ${LOG_PATH}/${LOG_FILE}
 chown -R redis:redis ${LOG_PATH}/${LOG_FILE}
 create_logrotate redis ${LOG_PATH}/${LOG_FILE} redis redis redis
 
-if var_true "${CONTAINER_ENABLE_MONITORING}" && [ "${CONTAINER_MONITORING_BACKEND,,}" = "zabbix" ]; then
-        source /assets/defaults/03-monitoring
-        cat <<EOF > "${ZABBIX_CONFIG_PATH}"/"${ZABBIX_CONFIG_FILE}.d"/tiredofit_redis.conf
-# Zabbix Redis Configuration - Automatically Generated
-# Find Companion Zabbix Server Templates at https://github.com/tiredofit/docker-redis
-# Autoregister=redis
-EOF
-fi
+create_zabbix redis
 
 mkdir -p ${DATA_PATH}
 chown -R redis:redis ${DATA_PATH}

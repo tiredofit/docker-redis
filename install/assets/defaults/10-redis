@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bash
+#!/command/with-contenv bash
 
 DATA_PATH=${DATA_PATH:-"/data/db/"}
 ENABLE_PERSISTENCE=${ENABLE_PERSISTENCE:-"TRUE"}
