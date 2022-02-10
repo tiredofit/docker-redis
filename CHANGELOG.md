@@ -1,3 +1,9 @@
+## 2.14.10 2022-02-09 <dave at tiredofit dot ca>
+
+   ### Changed
+      - Refresh base image
+
+
 ## 2.14.9 2021-12-07 <dave at tiredofit dot ca>
 
    ### Added
