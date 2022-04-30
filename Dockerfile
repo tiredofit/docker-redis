@@ -1,7 +1,7 @@
 FROM docker.io/tiredofit/alpine:3.15
 LABEL maintainer="Dave Conroy (github.com/tiredofit)"
 
-ENV REDIS_VERSION=6.2.7 \
+ENV REDIS_VERSION=7.0.0 \
     CONTAINER_ENABLE_MESSAGING=FALSE \
     IMAGE_NAME="tiredofit/redis" \
     IMAGE_REPO_URL="https://github.com/tiredofit/docker-redis/"
