@@ -1,3 +1,9 @@
+## 2.16.0 2022-06-18 <dave at tiredofit dot ca>
+
+   ### Added
+      - Add socket capabilities
+
+
 ## 2.15.3 2022-06-12 <dave at tiredofit dot ca>
 
    ### Added
