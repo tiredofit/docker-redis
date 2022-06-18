@@ -17,6 +17,10 @@ if var_true ${ENABLE_PERSISTENCE} ; then
    redis_persistence="--appendonly yes"
 fi
 
+if var_true ${ENABLE_SOCKET} ; then
+	redis_socket="--unixsocket ${SOCKET_PATH}/${SOCKET_FILE} --unixsocketperm ${SOCKET_PERMISSIONS}"
+fi
+
 ## Redis Setup
 	# first arg is `-f` or `--some-option`
 	# or first arg is `something.conf`
@@ -35,4 +39,4 @@ exec s6-setuidgid redis redis-server --dir ${DATA_PATH} \
                                      ${REDIS_PASS:+--requirepass $REDIS_PASS} \
                                      --loglevel ${LOG_LEVEL} \
                                      --port ${REDIS_PORT} \
-				     				${redis_persistence} ${redis_logs}
+				     				${redis_persistence} ${redis_logs} ${redis_socket}
