@@ -1,9 +1,9 @@
 FROM docker.io/tiredofit/alpine:3.16
 LABEL maintainer="Dave Conroy (github.com/tiredofit)"
 
-ENV REDIS_VERSION=7.0.3 \
+ENV REDIS_VERSION=7.0.4 \
     CONTAINER_ENABLE_MESSAGING=FALSE \
-    IMAGE_NAME="tiredofit/redis" \
+    IMAGE_NAME="tiredofit/redis:7" \
     IMAGE_REPO_URL="https://github.com/tiredofit/docker-redis/"
 
 ## Redis Installation
