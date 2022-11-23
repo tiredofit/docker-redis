@@ -1,4 +1,4 @@
-FROM docker.io/tiredofit/alpine:3.16
+FROM docker.io/tiredofit/alpine:3.17
 LABEL maintainer="Dave Conroy (github.com/tiredofit)"
 
 ENV REDIS_VERSION=7.0.5 \
@@ -63,4 +63,4 @@ RUN set -ex && \
 EXPOSE 6379
 
 ### Files Addition
-ADD install /
+COPY install /
