@@ -1,3 +1,12 @@
+## 2.17.0 2022-12-12 <dave at tiredofit dot ca>
+
+   ### Added
+      - Redis 7.0.6
+
+   ### Changed
+      - Rework Dockerfile
+
+
 ## 2.16.4 2022-11-23 <dave at tiredofit dot ca>
 
    ### Added
