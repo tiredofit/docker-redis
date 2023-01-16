@@ -1,3 +1,9 @@
+## 2.15.1 2023-01-16 <dave at tiredofit dot ca>
+
+   ### Added
+      - Redis 6.2.9
+
+
 ## 2.15.0 2022-06-18 <dave at tiredofit dot ca>
 
    ### Added

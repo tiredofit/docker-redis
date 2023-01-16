@@ -9,15 +9,15 @@ check_service_initialized init
 
 liftoff
 
-if var_true ${ENABLE_LOGS} ; then
+if var_true "${ENABLE_LOGS}" ; then
     redis_logs=" --logfile ${LOG_PATH}/${LOG_FILE}"
 fi
 
-if var_true ${ENABLE_PERSISTENCE} ; then
+if var_true "${ENABLE_PERSISTENCE}" ; then
    redis_persistence="--appendonly yes"
 fi
 
-if var_true ${ENABLE_SOCKET} ; then
+if var_true "${ENABLE_SOCKET}" ; then
 	redis_socket="--unixsocket ${SOCKET_PATH}/${SOCKET_FILE} --unixsocketperm ${SOCKET_PERMISSIONS}"
 fi
 
@@ -35,8 +35,8 @@ fi
 	fi
 
 print_start "Starting Redis ${REDIS_VERSION}"
-exec s6-setuidgid redis redis-server --dir ${DATA_PATH} \
+exec s6-setuidgid redis redis-server --dir "${DATA_PATH}" \
                                      ${REDIS_PASS:+--requirepass $REDIS_PASS} \
-                                     --loglevel ${LOG_LEVEL} \
+                                     --loglevel "${LOG_LEVEL}" \
                                      --port ${REDIS_PORT} \
 				     				${redis_persistence} ${redis_logs} ${redis_socket}

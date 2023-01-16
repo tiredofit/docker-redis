@@ -1,19 +1,23 @@
-FROM docker.io/tiredofit/alpine:3.16
+ARG DISTRO="alpine"
+ARG DISTRO_VARIANT="3.17"
+
+FROM docker.io/tiredofit/${DISTRO}:${DISTRO_VARIANT}
 LABEL maintainer="Dave Conroy (github.com/tiredofit)"
 
-ENV REDIS_VERSION=6.2.7 \
+ARG REDIS_VERSION
+
+ENV REDIS_VERSION=${REDIS_VERSION:-"6.2.9"} \
     CONTAINER_ENABLE_MESSAGING=FALSE \
-    IMAGE_NAME="tiredofit/redis" \
+    IMAGE_NAME="tiredofit/redis:6" \
     IMAGE_REPO_URL="https://github.com/tiredofit/docker-redis/"
 
-## Redis Installation
-RUN set -ex && \
+RUN source /assets/functions/00-container && \
+    set -ex && \
     addgroup -S -g 6379 redis && \
     adduser -S -D -H -h /dev/null -s /sbin/nologin -G redis -u 6379 redis && \
-    apk add --no-cache 'su-exec>=0.2' && \
-	apk update && \
-	apk upgrade && \
-	apk add -t .redis-build-deps \
+    package update && \
+    package upgrade && \
+    package install .redis-build-deps \
 				coreutils \
 				gcc \
 				linux-headers \
@@ -23,16 +27,15 @@ RUN set -ex && \
 				tar \
 			    && \
 	\
-	mkdir -p /usr/src/redis && \
-	curl -sSL https://github.com/redis/redis/archive/refs/tags/${REDIS_VERSION}.tar.gz | tar xfz - --strip 1 -C /usr/src/redis && \
+	clone_git_repo https://github.com/redis/redis "${REDIS_VERSION}" && \
 	\
-	grep -E '^ *createBoolConfig[(]"protected-mode",.*, *1 *,.*[)],$' /usr/src/redis/src/config.c && \
-	sed -ri 's!^( *createBoolConfig[(]"protected-mode",.*, *)1( *,.*[)],)$!\10\2!' /usr/src/redis/src/config.c && \
-	grep -E '^ *createBoolConfig[(]"protected-mode",.*, *0 *,.*[)],$' /usr/src/redis/src/config.c && \
+	grep -E '^ *createBoolConfig[(]"protected-mode",.*, *1 *,.*[)],$' src/config.c && \
+	sed -ri 's!^( *createBoolConfig[(]"protected-mode",.*, *)1( *,.*[)],)$!\10\2!' src/config.c && \
+	grep -E '^ *createBoolConfig[(]"protected-mode",.*, *0 *,.*[)],$' src/config.c && \
 	\
 	export BUILD_TLS=yes && \
-	make -C /usr/src/redis -j "$(nproc)" all && \
-	make -C /usr/src/redis install && \
+	make -j "$(nproc)" all && \
+	make install && \
 	\
 	serverMd5="$(md5sum /usr/local/bin/redis-server | cut -d' ' -f1)"; export serverMd5 && \
 	find /usr/local/bin/redis* -maxdepth 0 \
@@ -50,17 +53,17 @@ RUN set -ex && \
 		| sort -u \
 		| awk 'system("[ -e /usr/local/lib/" $1 " ]") == 0 { next } { print "so:" $1 }' \
     )" && \
-    apk add -t .redis-rundeps $runDeps && \
-	apk del .redis-build-deps && \
-	rm -r /usr/src/redis && \
-    rm -rf /var/cache/apk/* && \
+    package install .redis-rundeps \
+                    su-exec \
+                    $runDeps \
+                    && \
+	package remove .redis-build-deps && \
+	rm -rf /usr/src/* && \
+    package cleanup && \
     \
-# Workspace and Volume Setup
     mkdir -p /data && \
-    chown redis /data
+    chown redis:redis /data
 
-## Networking Configuration
 EXPOSE 6379
 
-### Files Addition
-ADD install /
+COPY install /
