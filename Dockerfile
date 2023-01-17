@@ -6,7 +6,7 @@ LABEL maintainer="Dave Conroy (github.com/tiredofit)"
 
 ARG REDIS_VERSION
 
-ENV REDIS_VERSION=${REDIS_VERSION:-"6.2.9"} \
+ENV REDIS_VERSION=${REDIS_VERSION:-"6.2.10"} \
     CONTAINER_ENABLE_MESSAGING=FALSE \
     IMAGE_NAME="tiredofit/redis:6" \
     IMAGE_REPO_URL="https://github.com/tiredofit/docker-redis/"
