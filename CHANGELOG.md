@@ -1,3 +1,9 @@
+## 7-2.17.4 2023-03-20 <dave at tiredofit dot ca>
+
+   ### Added
+      - Redis 7.0.10
+
+
 ## 7-2.17.3 2023-02-28 <dave at tiredofit dot ca>
 
    ### Added
