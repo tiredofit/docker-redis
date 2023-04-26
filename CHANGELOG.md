@@ -1,3 +1,9 @@
+## 7-2.18.0 2023-04-26 <dave at tiredofit dot ca>
+
+   ### Added
+      - Add support for _FILE environment variables
+
+
 ## 7-2.17.5 2023-04-17 <dave at tiredofit dot ca>
 
    ### Added
