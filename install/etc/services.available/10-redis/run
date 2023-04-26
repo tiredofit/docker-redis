@@ -21,6 +21,7 @@ if var_true "${ENABLE_SOCKET}" ; then
 	redis_socket="--unixsocket ${SOCKET_PATH}/${SOCKET_FILE} --unixsocketperm ${SOCKET_PERMISSIONS}"
 fi
 
+transform_file_var REDIS_PASS
 ## Redis Setup
 	# first arg is `-f` or `--some-option`
 	# or first arg is `something.conf`

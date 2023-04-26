@@ -8,11 +8,9 @@
 [![Become a sponsor](https://img.shields.io/badge/sponsor-tiredofit-181717.svg?logo=github&style=flat-square)](https://github.com/sponsors/tiredofit)
 [![Paypal Donate](https://img.shields.io/badge/donate-paypal-00457c.svg?logo=paypal&style=flat-square)](https://www.paypal.me/tiredofit)
 
-
-
 ## About
 
-This will build a Docker image for [Redis](https://www.redis.org) - a high speed database.
+This will build a Docker image for [Redis](https://www.redis.org) - a highly performant key value store.
 
 ## Maintainer
 
@@ -20,18 +18,29 @@ This will build a Docker image for [Redis](https://www.redis.org) - a high speed
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-- [Authors](#authors)
+- [About](#about)
+- [Maintainer](#maintainer)
 - [Table of Contents](#table-of-contents)
-- [Prerequisites](#prerequisites)
+- [Prerequisites and Assumptions](#prerequisites-and-assumptions)
+- [Prerequisites and Assumptions](#prerequisites-and-assumptions-1)
 - [Installation](#installation)
-  - [Quick Start](#quick-start)
+  - [Build from Source](#build-from-source)
+  - [Prebuilt Images](#prebuilt-images)
+    - [Multi Architecture](#multi-architecture)
 - [Configuration](#configuration)
-  - [Data-Volumes](#data-volumes)
+  - [Quick Start](#quick-start)
+  - [Persistent Storage](#persistent-storage)
   - [Environment Variables](#environment-variables)
+    - [Base Images used](#base-images-used)
   - [Networking](#networking)
 - [Maintenance](#maintenance)
   - [Shell Access](#shell-access)
+- [Support](#support)
+  - [Usage](#usage)
+  - [Bugfixes](#bugfixes)
+  - [Feature Requests](#feature-requests)
+  - [Updates](#updates)
+- [License](#license)
 - [References](#references)
 
 ## Prerequisites and Assumptions
@@ -52,17 +61,18 @@ Builds of the image are available on [Docker Hub](https://hub.docker.com/r/tired
 ```bash
 docker pull docker.io/tiredofdit/redis:(imagetag)
 ```
-Builds of the image are also available on the [Github Container Registry](https://github.com/tiredofit/docker-redis/pkgs/container/docker-redis) 
- 
+Builds of the image are also available on the [Github Container Registry](https://github.com/tiredofit/docker-redis/pkgs/container/docker-redis)
+
 ```
 docker pull ghcr.io/tiredofit/docker-redis:(imagetag)
-``` 
+```
 
 The following image tags are available along with their tagged release based on what's written in the [Changelog](CHANGELOG.md):
 
 | Version | Container OS | Tag       |
 | ------- | ------------ | --------- |
 | latest  | Alpine       | `:latest` |
+| 7       | Alpine       | `:7`      |
 | 6       | Alpine       | `:6`      |
 | 5       | Alpine       | `:5`      |
 
@@ -101,12 +111,12 @@ Be sure to view the following repositories to understand all the customizable op
 | ------------------------------------------------------ | -------------------------------------- |
 | [OS Base](https://github.com/tiredofit/docker-alpine/) | Customized Image based on Alpine Linux |
 
-| Parameter     | Description                            | Default  |
-| ------------- | -------------------------------------- | -------- |
-| `ENABLE_LOGS` | Enable Logfiles `TRUE` or `FALSE`      | `FALSE`  |
-| `LOG_LEVEL`   | Log level                              | `notice` |
-| `REDIS_PORT`  | Listening Port                         | `6379`   |
-| `REDIS_PASS`  | (optional) Require password to connect |          |
+| Parameter     | Description                            | Default  | `_FILE` |
+| ------------- | -------------------------------------- | -------- | -- |
+| `ENABLE_LOGS` | Enable Logfiles `TRUE` or `FALSE`      | `FALSE`  | |
+| `LOG_LEVEL`   | Log level                              | `notice` | |
+| `REDIS_PORT`  | Listening Port                         | `6379`   | |
+| `REDIS_PASS`  | (optional) Require password to connect |          | x |
 
 ### Networking
 
