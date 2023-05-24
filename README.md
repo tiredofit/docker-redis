@@ -59,7 +59,7 @@ Clone this repository and build the image with `docker build -t (imagename) .`
 Builds of the image are available on [Docker Hub](https://hub.docker.com/r/tiredofit/redis)
 
 ```bash
-docker pull docker.io/tiredofdit/redis:(imagetag)
+docker pull docker.io/tiredofit/redis:(imagetag)
 ```
 Builds of the image are also available on the [Github Container Registry](https://github.com/tiredofit/docker-redis/pkgs/container/docker-redis)
 
