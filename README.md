@@ -113,7 +113,7 @@ Be sure to view the following repositories to understand all the customizable op
 
 | Parameter     | Description                            | Default  | `_FILE` |
 | ------------- | -------------------------------------- | -------- | ------- |
-| `ENABLE_LOGS` | Enable Logfiles `TRUE` or `FALSE`      | `FALSE`  |         |
+| `ENABLE_LOGS` | Enable Logfiles `TRUE` or `FALSE`      | `TRUE`   |         |
 | `LOG_LEVEL`   | Log level                              | `notice` |         |
 | `REDIS_PORT`  | Listening Port                         | `6379`   |         |
 | `REDIS_PASS`  | (optional) Require password to connect |          | x       |

@@ -1,3 +1,9 @@
+## 7-2.18.7 2023-11-07 <dave at tiredofit dot ca>
+
+   ### Changed
+      - Change Default ENABLE_LOGS=TRUE
+
+
 ## 7-2.18.6 2023-11-01 <dave at tiredofit dot ca>
 
    ### Added
