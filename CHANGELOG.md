@@ -1,3 +1,9 @@
+## 8-3.0.5 2026-05-05 <code at nfrastack dot com>
+
+   ### Added
+      - Redis 8.6.3
+
+
 ## 8-3.0.4 2026-04-16 <code at nfastack dot com>
 
    ### Added
