@@ -1,7 +1,7 @@
 {
     "zabbix_export": {
         "version": "5.4",
-        "date": "2021-12-13T23:03:32Z",
+        "date": "2021-12-13.24:03:32Z",
         "groups": [
             {
                 "uuid": "748ad4d098d447d492bb935c907f652f",
@@ -389,7 +389,7 @@
                         ],
                         "triggers": [
                             {
-                                "uuid": "629531ff1ebc4bdbb1f277848c436230",
+                                "uuid": "629531ff1ebc4bdbb1f277848c43.240",
                                 "expression": "min(/Redis/redis.memory.fragmentation_ratio,15m)>{$REDIS.MEM.FRAG_RATIO.MAX.WARN}",
                                 "name": "Redis: Memory fragmentation ratio is too high (over {$REDIS.MEM.FRAG_RATIO.MAX.WARN} in 15m)",
                                 "priority": "WARNING",
@@ -4429,7 +4429,7 @@
                 ]
             },
             {
-                "uuid": "b3db4cc8247647faae0d3c2389f37d80",
+                "uuid": "b3db4cc8247647faae0d3.2489f37d80",
                 "name": "Redis: Network",
                 "graph_items": [
                     {
