@@ -48,17 +48,18 @@ RUN echo "" && \
                                 		bsd-compat-headers \
                                 		build-base \
                                 		cargo \
-                                		clang21 \
-                                		clang21-static \
-                                		clang21-libclang \
-                                		cmake \
-                                		curl \
-                                		g++ \
-                                		git \
-                                		libffi-dev \
-                                		libgcc \
-                                		libtool \
-                                		llvm21-dev \
+                                 		clang21 \
+                                 		clang21-static \
+                                 		clang21-libclang \
+                                 		cmake \
+                                 		curl \
+                                 		g++ \
+                                 		git \
+                                 		lld21 \
+                                 		libffi-dev \
+                                 		libgcc \
+                                 		libtool \
+                                 		llvm21-dev \
                                 		ncurses-dev \
                                 		openssh \
                                 		openssl  \
